@@ -1,0 +1,8 @@
+pandas
+numpy == 1.26.4
+seaborn
+matplotlib
+flask
+python-dotenv
+requests
+# - e.
