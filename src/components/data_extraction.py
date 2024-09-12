@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
 from src.components.data_transform import DataTranformation
-from src.components.model_train import ModelTrainerConfig, ModelTrainer
+from src.pipeline.train_pipeline import ModelTrainerConfig, ModelTrainer
 
 @dataclass
 class DataIngestionConfig:

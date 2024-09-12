@@ -14,6 +14,7 @@ from src.logger import logging
 
 from src.utils import save_object, evaluate_models
 
+
 @dataclass
 class ModelTrainerConfig:
     trained_model_file_path=os.path.join('artifact', 'model.pkl')
@@ -21,6 +22,7 @@ class ModelTrainerConfig:
 class ModelTrainer:
     def __init__(self):
         self.model_trainer_config=ModelTrainerConfig()
+        self.model_features = None
     
     def initiate_model_trainer(self, dataset):
         try:
@@ -32,8 +34,10 @@ class ModelTrainer:
             logging.info('splitting complete')
 
             logging.info('starting training')
+            print('starting training')
             model_rf = RandomForestClassifier(n_estimators=95, random_state=42, verbose=True)
             model_rf.fit(X_train, y_train)
+
             y_pred = model_rf.predict(X_test)
 
             logging.info('training done')
@@ -50,8 +54,9 @@ class ModelTrainer:
 
             predicted=best_model.predict(X_test)
 
-            accuracy_score(y_test, predicted)
-            return accuracy_score
-        
+            acc_score = accuracy_score(y_test, predicted)
+            print(acc_score)
+            return acc_score
+    
         except Exception as e:
             raise CustomException(e,sys)

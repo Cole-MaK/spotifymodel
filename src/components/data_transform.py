@@ -13,7 +13,7 @@ from sklearn.utils import resample
 
 from src.exception import CustomException
 from src.logger import logging
-from src.utils import save_object
+
 
 class DataTranformation:
     def __init__(self):
@@ -21,7 +21,6 @@ class DataTranformation:
     
     def initiate_data_tranformation(self, raw_path):
         try:
-            print(raw_path)
             data=pd.read_csv(raw_path)
 
             logging.info("Read train and test data completed")
@@ -59,5 +58,16 @@ class DataTranformation:
 
             return data_resampled
         
+        except Exception as e:
+            raise CustomException(e,sys)
+        
+    def transform_input_data(self, dataframe):
+        try:
+            scaler = StandardScaler()
+            continuous_features = ['popularity', 'duration_ms', 'danceability', 'energy', 'loudness', 
+                        'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo']
+            dataframe[continuous_features] = scaler.fit_transform(dataframe[continuous_features])
+            
+            return dataframe
         except Exception as e:
             raise CustomException(e,sys)
