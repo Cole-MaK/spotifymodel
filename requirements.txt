@@ -2,7 +2,10 @@ pandas
 numpy == 1.26.4
 seaborn
 matplotlib
+scikit-learn
 flask
 python-dotenv
 requests
+xgboost
+dill
 # - e.

@@ -130,7 +130,8 @@ ENV/
 env.bak/
 venv.bak/
 
-# dataset
+# dataset\
+artifact/
 spotify.csv
 .DS_Store
 # Spyder project settings
