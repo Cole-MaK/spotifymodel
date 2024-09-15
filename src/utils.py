@@ -10,8 +10,6 @@ from sklearn.model_selection import GridSearchCV
 
 from src.exception import CustomException
 from src.logger import logging
-from sklearn.model_selection import train_test_split
-
 import json
 import base64
 from requests import get, post
