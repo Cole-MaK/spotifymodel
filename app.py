@@ -26,3 +26,6 @@ def predict_genre():
         result = result.astype(int)[0]
         genre_dict = load_object('artifact/genre_dict.pkl')
         return render_template('home.html', results = genre_dict[result])
+
+if __name__=="__main__":
+    app.run()
