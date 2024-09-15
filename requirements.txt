@@ -8,4 +8,5 @@ python-dotenv
 requests
 xgboost
 dill
+gunicorn
 # - e.
