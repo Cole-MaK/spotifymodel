@@ -1,12 +1,11 @@
-pandas
+pandas == 2.2.2
 numpy == 1.26.4
-seaborn
-matplotlib
-scikit-learn
-flask
-python-dotenv
-requests
-xgboost
-dill
-gunicorn
+seaborn == 0.13.2
+matplotlib == 3.9.2
+scikit-learn == 1.5.2
+flask == 3.0.3
+python-dotenv == 1.0.1
+requests == 2.32.3
+xgboost == 2.1.1
+dill == 0.3.8
 # - e.

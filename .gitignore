@@ -134,6 +134,7 @@ venv.bak/
 artifact/
 spotify.csv
 .DS_Store
+
 # Spyder project settings
 .spyderproject
 .spyproject
