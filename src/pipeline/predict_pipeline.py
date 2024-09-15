@@ -2,7 +2,6 @@ import sys
 import pandas as pd
 from src.exception import CustomException
 from src.utils import load_object, get_token, get_auth_header
-from src.components.data_transform import DataTranformation
 
 from requests import get, post
 import json
