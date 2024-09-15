@@ -1,7 +1,7 @@
 import sys
 import pandas as pd
 from src.exception import CustomException
-from src.utils import load_object, get_token, get_auth_header, get_feature_columns
+from src.utils import load_object, get_token, get_auth_header
 from src.components.data_transform import DataTranformation
 
 from requests import get, post
@@ -14,9 +14,11 @@ class PredictPipeline:
     def predict(self, features):
         try:
             model_path = 'artifact/model.pkl'
+            preprocessor_path = 'artifact/preprocessor.pkl'
             model=load_object(file_path=model_path)
-            prediction=model.predict(features)
-            print(prediction)
+            preprocessor=load_object(file_path=preprocessor_path)
+            data_preprocess = preprocessor.transform(features)
+            prediction = model.predict(data_preprocess)
             return prediction
         
         except Exception as e:
@@ -83,13 +85,8 @@ class CustomData:
                 'tempo',
                 'time_signature'
                 ]]
-            data_transformation = DataTranformation()
-            song_df = data_transformation.transform_input_data(song_df)
-
-            feature_columns = get_feature_columns()
-            song_df = pd.get_dummies(song_df, columns=['key', 'mode', 'time_signature'], drop_first=True)
-            song_df = song_df.reindex(columns=feature_columns, fill_value=0)
-            print(song_df)
+            
             return song_df
+        
         except Exception as e:
             raise CustomException(e,sys)

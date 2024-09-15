@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Genre Prediction</title>
+</head>
+<body>
+    <form action="{{ url_for('predict_genre') }}" method="post">
+        <h1>
+            <legend>Song Genre Predictor</legend>
+        </h1>
+        <div>
+            <label for="song_name">Song Name:</label>
+            <input type="text" id="song_name" name="song_name" required><br><br>
+        </div>
+        <div>
+            <label for="artist">Artist:</label>
+            <input type="artist" id="artist" name="artist" required><br><br>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+    <h2>
+        The Genre of this song is {{ results }}
+    </h2>
+</body>
+</html>
