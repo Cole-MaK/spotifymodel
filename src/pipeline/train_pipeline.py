@@ -3,7 +3,11 @@ import sys
 
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import classification_report, accuracy_score
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
 import xgboost as xgb
 from sklearn.naive_bayes import GaussianNB
 
@@ -17,7 +21,7 @@ from src.utils import save_object, evaluate_models
 
 @dataclass
 class ModelTrainerConfig:
-    trained_model_file_path=os.path.join('artifact', 'model.pkl')
+    trained_model_file_path=os.path.join('artifact', 'model2.pkl')
 
 class ModelTrainer:
     def __init__(self):
@@ -36,14 +40,16 @@ class ModelTrainer:
             logging.info('splitting complete')
 
             models = {
-                "Random Forest": RandomForestClassifier(n_estimators=95, random_state=42, verbose=True)
+                "Decision Tree": DecisionTreeClassifier(),
+                "Naive Bayes": GaussianNB(),
+                "Logistic Regression": LogisticRegression()
             }
 
             logging.info('starting training')
             print('starting training')
             model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test, models=models)
             logging.info('training done')
-
+            print(model_report)
             best_model_score = max(sorted(model_report.values()))
 
             best_model_name = list(model_report.keys())[
